@@ -4,7 +4,7 @@ local http = require "resty.http"
 local ExternalAuthHandler = BasePlugin:extend()
 
 function ExternalAuthHandler:new()
-    ExternalAuthHandler.super.new(self, "external-auth")
+    ExternalAuthHandler.super.new(self, "request-intercept")
 end
 
 function ExternalAuthHandler:access(conf)
