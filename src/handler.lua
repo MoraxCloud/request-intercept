@@ -29,6 +29,5 @@ function ExternalAuthHandler:access(conf)
 end
 
 ExternalAuthHandler.PRIORITY = 900
-ExternalAuthHandler.VERSION = "0.1.0"
 
 return ExternalAuthHandler
