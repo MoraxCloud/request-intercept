@@ -3,6 +3,8 @@ local http = require "resty.http"
 
 local ExternalAuthHandler = BasePlugin:extend()
 
+ExternalAuthHandler.PRIORITY = 1999
+
 function ExternalAuthHandler:new()
     ExternalAuthHandler.super.new(self, "request-intercept")
 end
@@ -20,14 +22,14 @@ function ExternalAuthHandler:access(conf)
     })
 
     if not res then
-        return kong.response.exit(500, { message = err })
+        kong.response.exit(500, { message = err })
     end
-
     if res.status ~= 200 then
-        return kong.response.exit(401, { message = "Invalid authentication credentials" })
+        kong.response.exit(401, { message = "Invalid authentication credentials" })
     end
-end
 
-ExternalAuthHandler.PRIORITY = 900
+    client:close()
+
+end
 
 return ExternalAuthHandler
